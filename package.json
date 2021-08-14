@@ -7,5 +7,12 @@
     "build": ""
   },
   "author": "Kenworthe",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^5.3.0",
+    "del": "^6.0.0"
+  },
+  "devDependencies": {
+    "terser": "^5.7.1"
+  }
 }
