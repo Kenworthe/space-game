@@ -11,16 +11,16 @@ const del = require('del');
 const files = [
     'src/config.js',
     'src/globals.js',
-    'src/graphics.js',
-    'src/utils.js',
     'src/game.js',
-    'src/camera.js',
-    'src/item.js',
-    'src/player.js',
-    'src/obstacle.js',
-    'src/menu.js',
-    'src/main-menu.js',
-    'src/rng.js',
+    // 'src/graphics.js',
+    // 'src/camera.js',
+    // 'src/item.js',
+    // 'src/player.js',
+    // 'src/obstacle.js',
+    // 'src/utils.js',
+    // 'src/menu.js',
+    // 'src/main-menu.js',
+    // 'src/rng.js',
 ];
 
 (async () => {
