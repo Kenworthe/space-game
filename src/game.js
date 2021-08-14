@@ -4,11 +4,15 @@ onload = () => {
   CANVAS.width = CONFIG.width
   CANVAS.height = CONFIG.height
 
+  CANVAS.focus()
+  CANVAS.addEventListener('keydown', onKeyDown, false)
+  CANVAS.addEventListener('keyup', onKeyUp, false)
+
   CONTEXT = CANVAS.getContext('2d')
 
   resetGame()
 
-  onresize()
+  // TODO: onresize()
 
   animationFrame()
 }
@@ -33,25 +37,61 @@ onresize = () => {
 }
 
 animationFrame = () => {
-  const now = performance.now()
-  const elapsed = (now - LAST_FRAME) / 1000
+  const now = window.performance.now()
+  const delta = (now - LAST_FRAME) / 1000
   LAST_FRAME = now
 
-  cycle(elapsed)
-  renderFrame()
+  cycleGame(delta) // calculate game interactions
+  renderFrame() // then render everything
 
-  requestAnimationFrame(animationFrame)
+  window.requestAnimationFrame(animationFrame) // request next frame
 }
 
-function startApp() {
-  app.canvas = $('#gameCanvas')[0]
-  app.canvas.focus()
-  app.context = app.canvas.getContext('2d')
-  app.lastTime = window.performance.now()
-  window.requestAnimationFrame(frameUpdate)
+cycleGame = (delta) => {
+  if (!MENU || MENU.dismissed) {
+    GAME_DURATION += delta
+  } else {
+    GAME_DURATION = 0
+  }
 
-  app.canvas.addEventListener('keydown', myKeyDown, false)
-  app.canvas.addEventListener('keyup', myKeyUp, false)
+  if (!MOUSE_DOWN) {
+    WAIT_FOR_RELEASE = false
+  }
 
-  endGame() //starts game in a "paused" state
+  // PLAYER.cycle(delta)
+  // CAMERA.cycle(delta);
+  // ITEMS.forEach(i => i.cycle(delta))
+
+  // Prob not needed.
+  // const appliedDiff = Math.max(-delta * 0.5, Math.min(delta * 0.5, PLAYER.power - RENDERED_POWER))
+  // RENDERED_POWER += appliedDiff
+
+  // if (!OBSTACLES.length || OBSTACLES[OBSTACLES.length - 1].y >= CAMERA.topY) {
+  //   generateNewObstacle()
+  // }
+}
+
+renderFrame = () => {
+  // TODO
+  console.log('[renderFrame]')
+
+  CONTEXT.fillStyle = '#000'
+  CONTEXT.fillRect(0, 0, CONFIG.width, CONFIG.height)
+
+  // TODO: call render on all players/objects/etc
+}
+
+resetGame = () => {
+  // TODO
+  console.log('[resetGame]')
+}
+
+onKeyDown = (e) => {
+  // TODO
+  console.log('[onKeyDown]', e)
+}
+
+onKeyUp = (e) => {
+  // TODO
+  console.log('[onKeyUp]', e)
 }
